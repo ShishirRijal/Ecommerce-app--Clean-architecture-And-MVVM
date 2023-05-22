@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'core.dart';
+import '../core.dart';
 
 TextStyle _getTextStyle(
     String fontFamily, double size, Color color, FontWeight fontWeight) {
