@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:ecommerce_app/core.dart/resources/asset_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../core.dart/core.dart';
