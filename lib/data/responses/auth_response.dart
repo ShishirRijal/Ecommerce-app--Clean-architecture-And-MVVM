@@ -22,6 +22,7 @@ class AuthResponse extends BaseResponse {
       _$AuthResponseFromJson(json);
 
   /// Conver the [AuthResponse] object to [Json]
+  @override
   Map<String, dynamic> toJson() => _$AuthResponseToJson(this);
 }
 

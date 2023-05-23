@@ -5,8 +5,8 @@ import 'model.dart';
 // * It is done to pass non-nullable objects to view, and the conversion from nullable
 // * to non-nullable is done during the mapping...
 class Authentication {
-  Customer customer;
-  Contact contact;
+  Customer? customer;
+  Contact? contact;
 
   Authentication({
     required this.customer,
