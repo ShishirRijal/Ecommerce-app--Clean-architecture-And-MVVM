@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/app/constants.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String applicationJson = "application/json";
 const String contentType = "content-type";
@@ -24,6 +26,18 @@ class DioFactory {
       sendTimeout: timeOut,
       headers: headers,
     );
+
+    if (kReleaseMode) {
+      debugPrint("Release mode...");
+    } else {
+      dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: true,
+      ));
+    }
+
     return dio;
   }
 }
