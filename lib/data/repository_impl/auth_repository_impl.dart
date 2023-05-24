@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/data/data_source/remote_data_source.dart';
 import 'package:ecommerce_app/data/mapper/mapper.dart';
+import 'package:ecommerce_app/data/network/error_handler.dart';
 import 'package:ecommerce_app/data/network/network_info.dart';
 import 'package:ecommerce_app/data/request/login_request.dart';
 import 'package:ecommerce_app/domain/model/model.dart';
@@ -21,22 +22,25 @@ class AuthRepositoryImpl implements AuthRepository {
       LoginRequest loginRequest) async {
     if (await networkInfo.isConnected) {
       //* It's safe to call api
-      final response = await remoteDataSource.login(loginRequest);
-      if (response.status == 0) // success
-      {
-        return Right(response.toDomain());
-      } else // failure
-      {
-        return Left(
-            Failure(409, response.message ?? 'An unknown error occurred!'));
+      try {
+        final response = await remoteDataSource.login(loginRequest);
+        if (response.status == ApiInternalStatus.SUCCESS) // success
+        {
+          return Right(response.toDomain());
+        } else // failure
+        {
+          return Left(Failure(
+            response.status ?? ApiInternalStatus.FAILURE,
+            response.message ?? 'An unknown error occurred!',
+          ));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
       }
     } else {
       //! Oops.. There's no internet, so no point of calling api..
       //! Let's return Failure instead
-      return Left(Failure(
-        200,
-        'No internet connection! Please check your connection.',
-      ));
+      return Left(StatusCode.NO_INTERNET_CONNECTION.getFailure());
     }
   }
 }
