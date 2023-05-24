@@ -6,8 +6,6 @@ import 'package:ecommerce_app/data/network/network_info.dart';
 import 'package:ecommerce_app/data/request/login_request.dart';
 import 'package:ecommerce_app/domain/model/model.dart';
 import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final NetworkInfo networkInfo;
@@ -29,16 +27,16 @@ class AuthRepositoryImpl implements AuthRepository {
         return Right(response.toDomain());
       } else // failure
       {
-        return Left(Failure(
-            code: 409,
-            message: response.message ?? 'An unknown error occurred!'));
+        return Left(
+            Failure(409, response.message ?? 'An unknown error occurred!'));
       }
     } else {
       //! Oops.. There's no internet, so no point of calling api..
       //! Let's return Failure instead
       return Left(Failure(
-          code: 200,
-          message: 'No internet connection! Please check your connection.'));
+        200,
+        'No internet connection! Please check your connection.',
+      ));
     }
   }
 }
