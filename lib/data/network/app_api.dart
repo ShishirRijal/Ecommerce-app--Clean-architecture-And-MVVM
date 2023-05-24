@@ -10,5 +10,10 @@ abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
   @POST('/customers/login')
-  Future<AuthResponse> login();
+  Future<AuthResponse> login({
+    @Field('email') required String email,
+    @Field('password') required String password,
+    @Field('imei') required String imei,
+    @Field('device_name') required String deviceName,
+  });
 }
