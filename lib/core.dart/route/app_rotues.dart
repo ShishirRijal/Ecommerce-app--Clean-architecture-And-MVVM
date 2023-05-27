@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/presentation.dart';
@@ -24,6 +25,7 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: ((context) => const OnboardingView()));
       case Routes.loginRoute:
+        initLogin();
         return MaterialPageRoute(builder: ((context) => const LoginView()));
       case Routes.registerRoute:
         return MaterialPageRoute(builder: ((context) => const RegisterView()));

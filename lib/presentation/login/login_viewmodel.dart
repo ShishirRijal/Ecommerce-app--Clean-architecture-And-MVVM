@@ -9,7 +9,7 @@ class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
   // * Here we are injecting the login usecase, so that we can use it to login the user
   // * it provides us with the login functionality ...
-  LoginUseCase? loginUseCase; // TODO: remove nullable
+  LoginUseCase loginUseCase;
   LoginViewModel({required this.loginUseCase});
 
   // * Here we use 'broadcast' because we want to listen to the stream multiple times in our view
@@ -37,7 +37,7 @@ class LoginViewModel extends BaseViewModel
   @override
   // Future<Either<Failure, Authentication>>
   login() async {
-    return (await loginUseCase!(LoginUseCaseInput(
+    return (await loginUseCase(LoginUseCaseInput(
             email: loginObject.username, password: loginObject.password)))
         .fold((failure) => {debugPrint(failure.message)},
             (data) => {debugPrint(data.customer?.name)});

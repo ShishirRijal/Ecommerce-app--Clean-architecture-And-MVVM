@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/presentation/login/login_viewmodel.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/di.dart';
 import '../../core.dart/core.dart';
 
 class LoginView extends StatefulWidget {
@@ -11,7 +12,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(loginUseCase: null);
+  final LoginViewModel _viewModel = getIt<LoginViewModel>();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -109,7 +110,7 @@ class _LoginViewState extends State<LoginView> {
                             child: ElevatedButton(
                                 onPressed: (snapshot.data ?? false)
                                     ? () {
-                                        // _viewModel.login();
+                                        _viewModel.login();
                                       }
                                     : null,
                                 child: const Text(AppString.login)),
