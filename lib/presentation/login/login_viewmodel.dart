@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/data/data.dart';
-import 'package:ecommerce_app/domain/model/model.dart';
 import 'package:ecommerce_app/domain/usecases/login_usecase.dart';
 import 'package:ecommerce_app/presentation/base/base_viewmodel.dart';
 import 'package:ecommerce_app/presentation/data_classes/data_classes.dart';
@@ -12,7 +9,7 @@ class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
   // * Here we are injecting the login usecase, so that we can use it to login the user
   // * it provides us with the login functionality ...
-  LoginUseCase loginUseCase;
+  LoginUseCase? loginUseCase; // TODO: remove nullable
   LoginViewModel({required this.loginUseCase});
 
   // * Here we use 'broadcast' because we want to listen to the stream multiple times in our view
@@ -22,6 +19,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
+  final StreamController _isAllFieldsValidStreamController =
+      StreamController<void>.broadcast();
   // login object
   var loginObject = LoginObject(username: "", password: "");
 
@@ -29,6 +28,7 @@ class LoginViewModel extends BaseViewModel
   void dispose() {
     _usernameStreamController.close();
     _passwordStreamController.close();
+    _isAllFieldsValidStreamController.close();
   }
 
   @override
@@ -37,7 +37,7 @@ class LoginViewModel extends BaseViewModel
   @override
   // Future<Either<Failure, Authentication>>
   login() async {
-    return (await loginUseCase(LoginUseCaseInput(
+    return (await loginUseCase!(LoginUseCaseInput(
             email: loginObject.username, password: loginObject.password)))
         .fold((failure) => {debugPrint(failure.message)},
             (data) => {debugPrint(data.customer?.name)});
@@ -49,15 +49,22 @@ class LoginViewModel extends BaseViewModel
     inputPassword.add(password);
     // updating the login object with new password
     loginObject = loginObject.copyWith(password: password);
+    // Everytime we update the password we validate the fields
+    _validate();
   }
 
   @override
   void setUsername(String username) {
     // Here we add the username to the sink...
-    inputPassword.add(username);
+    inputUsername.add(username);
     // updating the login object with new username
     loginObject = loginObject.copyWith(username: username);
+
+    _validate();
   }
+
+  @override
+  Sink get inputAllinputFields => _isAllFieldsValidStreamController.sink;
 
   @override
   Sink get inputPassword => _passwordStreamController.sink;
@@ -68,12 +75,17 @@ class LoginViewModel extends BaseViewModel
   @override
   Stream<bool> get isPasswordValid => _passwordStreamController.stream
       .map((password) => _isPasswordValid(password));
+
 // Here we are mapping the stream to a boolean value,
 // streamcontroller returns a stream of string, so we are mapping it to a boolean value
 
   @override
   Stream<bool> get isUsernameValid => _usernameStreamController.stream
       .map((username) => _isUsernameValid(username));
+
+  @override
+  Stream<bool> get isAllInputsValid =>
+      _isAllFieldsValidStreamController.stream.map((_) => _isAllFieldsValid());
 
 // * Private Functions
   bool _isPasswordValid(String password) {
@@ -82,6 +94,15 @@ class LoginViewModel extends BaseViewModel
 
   bool _isUsernameValid(String username) {
     return username.length > 4;
+  }
+
+  bool _isAllFieldsValid() {
+    return _isPasswordValid(loginObject.password) &&
+        _isUsernameValid(loginObject.username);
+  }
+
+  _validate() {
+    inputAllinputFields.add(null);
   }
 }
 
@@ -93,10 +114,12 @@ abstract class LoginViewModelInputs {
 
   Sink get inputUsername;
   Sink get inputPassword;
+  Sink get inputAllinputFields;
 }
 
 abstract class LoginViewModelOutputs {
   // to check the validity of username and password
   Stream<bool> get isUsernameValid;
   Stream<bool> get isPasswordValid;
+  Stream<bool> get isAllInputsValid;
 }
