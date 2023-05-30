@@ -3,8 +3,8 @@ import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  await setup();
   WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(
     MyApp(),
   );

@@ -39,8 +39,12 @@ class LoginViewModel extends BaseViewModel
   login() async {
     return (await loginUseCase(LoginUseCaseInput(
             email: loginObject.username, password: loginObject.password)))
-        .fold((failure) => {debugPrint(failure.message)},
-            (data) => {debugPrint(data.customer?.name)});
+        .fold(
+            (failure) => {debugPrint(failure.message)},
+            (data) => {
+                  debugPrint(data.customer?.name),
+                  debugPrint(data.contact?.email)
+                });
   }
 
   @override

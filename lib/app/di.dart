@@ -36,7 +36,7 @@ Future<void> setup() async {
 }
 
 void initLogin() {
-  if (GetIt.I.isRegistered<LoginUseCase>()) {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
     getIt.registerFactory(() => LoginUseCase(getIt()));
     getIt.registerFactory(() => LoginViewModel(loginUseCase: getIt()));
   }

@@ -1,9 +1,15 @@
-class Failure {
-  int code; // 200 or 400
-  String message; // error or success
+import 'package:ecommerce_app/data/data.dart';
 
-  Failure(
+class Failure {
+  final int code; // 200 or 400
+  final String message; // error or success
+
+  const Failure(
     this.code,
     this.message,
   );
+}
+
+class DefaultFailue extends Failure {
+  const DefaultFailue() : super(ResponseCode.UNKNOWN, ResponseMessage.UNKNOWN);
 }
