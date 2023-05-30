@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:ecommerce_app/domain/usecases/login_usecase.dart';
 import 'package:ecommerce_app/presentation/base/base_viewmodel.dart';
+import 'package:ecommerce_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:ecommerce_app/presentation/data_classes/data_classes.dart';
 import 'package:flutter/material.dart';
+
+import '../common/state_renderer/state_render_implementer.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -37,11 +40,18 @@ class LoginViewModel extends BaseViewModel
   @override
   // Future<Either<Failure, Authentication>>
   login() async {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
     return (await loginUseCase(LoginUseCaseInput(
             email: loginObject.username, password: loginObject.password)))
         .fold(
-            (failure) => {debugPrint(failure.message)},
+            (failure) => {
+                  inputState.add(ErrorState(
+                      StateRendererType.popupErrorState, failure.message)),
+                  debugPrint(failure.message)
+                },
             (data) => {
+                  inputState.add(ContentState()),
                   debugPrint(data.customer?.name),
                   debugPrint(data.contact?.email)
                 });

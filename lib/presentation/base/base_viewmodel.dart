@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
-import 'package:flutter/material.dart';
 
 abstract class BaseViewModel with BaseViewModelInputs, BaseViewModelOutputs {
   // shared functions and methods that are common to all view models

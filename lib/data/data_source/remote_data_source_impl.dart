@@ -11,8 +11,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     return await _client.login(
       email: loginRequest.email,
       password: loginRequest.password,
-      imei: loginRequest.imei,
-      deviceName: loginRequest.deviceName,
+      imei: "",
+      deviceName: "",
     );
   }
 }
