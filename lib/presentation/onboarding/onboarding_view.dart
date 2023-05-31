@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../app/app_prefs.dart';
+import '../../app/di.dart';
 import '../../core.dart/core.dart';
 import 'onboarding_item.dart';
 import 'onboarding_viewmodel.dart';
@@ -15,10 +17,12 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
   final OnboardingViewModel _viewModel = OnboardingViewModel();
+  final AppPreferences _appPreferences = getIt<AppPreferences>();
 
   @override
   void initState() {
     super.initState();
+    _appPreferences.setOnboardingScreenViewed();
     _viewModel.start(); // initialize the view model (bind the stream)
   }
 

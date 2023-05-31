@@ -24,6 +24,8 @@ class RouteGenerator {
       case Routes.onboardingRoute:
         return MaterialPageRoute(
             builder: ((context) => const OnboardingView()));
+      case Routes.mainRoute:
+        return MaterialPageRoute(builder: ((context) => const MainView()));
       case Routes.loginRoute:
         initLogin();
         return MaterialPageRoute(builder: ((context) => const LoginView()));

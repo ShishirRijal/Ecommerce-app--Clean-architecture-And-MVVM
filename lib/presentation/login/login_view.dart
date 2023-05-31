@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
 import 'package:ecommerce_app/presentation/login/login_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = getIt<LoginViewModel>();
+  final AppPreferences _appPreferences = getIt<AppPreferences>();
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -31,7 +34,8 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((isLoggedIn) {
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        Navigator.pushReplacementNamed(context, Routes.storeDetailRoute);
+        _appPreferences.setUserLoggedIn();
+        Navigator.pushReplacementNamed(context, Routes.mainRoute);
       });
     });
   }

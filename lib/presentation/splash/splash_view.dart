@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
+import '../../app/app_prefs.dart';
 import '../../core.dart/core.dart';
 
 class SplashView extends StatefulWidget {
@@ -11,9 +13,24 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  final _appPreferences = getIt<AppPreferences>();
   // This function will route to the onboarding screen
   // after dealy of few seconds as specified..
-  _goNext() {
+  _goNext() async {
+    _appPreferences.isUserLoggedIn().then((isLoggedIn) {
+      if (isLoggedIn) {
+        // go to the main route
+        Navigator.pushReplacementNamed(context, Routes.mainRoute);
+      } else {
+        _appPreferences.isOnboardingScreenViewed().then((isViewed) {
+          if (isViewed) {
+            Navigator.pushReplacementNamed(context, Routes.loginRoute);
+          } else {
+            Navigator.pushReplacementNamed(context, Routes.onboardingRoute);
+          }
+        });
+      }
+    });
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, Routes.onboardingRoute);
     });

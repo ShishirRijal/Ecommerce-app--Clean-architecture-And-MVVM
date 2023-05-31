@@ -7,3 +7,4 @@ export 'store_detail/store_detail_view.dart';
 export 'common/common.dart';
 export 'base/base_viewmodel.dart';
 export 'data_classes/data_classes.dart';
+export 'main/main_view.dart';
