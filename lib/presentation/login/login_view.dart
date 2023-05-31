@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
 import 'package:ecommerce_app/presentation/login/login_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../app/di.dart';
 import '../../core.dart/core.dart';
@@ -26,6 +27,12 @@ class _LoginViewState extends State<LoginView> {
     });
     _passwordController.addListener(() {
       _viewModel.setPassword(_passwordController.text);
+    });
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((isLoggedIn) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, Routes.storeDetailRoute);
+      });
     });
   }
 
