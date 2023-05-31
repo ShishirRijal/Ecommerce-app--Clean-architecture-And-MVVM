@@ -103,7 +103,7 @@ class __$$_LoginObjectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoginObject implements _LoginObject {
-  const _$_LoginObject({required this.username, required this.password});
+  _$_LoginObject({required this.username, required this.password});
 
   @override
   final String username;
@@ -137,7 +137,7 @@ class _$_LoginObject implements _LoginObject {
 }
 
 abstract class _LoginObject implements LoginObject {
-  const factory _LoginObject(
+  factory _LoginObject(
       {required final String username,
       required final String password}) = _$_LoginObject;
 

@@ -4,7 +4,6 @@ import 'package:ecommerce_app/domain/usecases/login_usecase.dart';
 import 'package:ecommerce_app/presentation/base/base_viewmodel.dart';
 import 'package:ecommerce_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:ecommerce_app/presentation/data_classes/data_classes.dart';
-import 'package:flutter/material.dart';
 
 import '../common/state_renderer/state_render_implementer.dart';
 
@@ -48,12 +47,9 @@ class LoginViewModel extends BaseViewModel
             (failure) => {
                   inputState.add(ErrorState(
                       StateRendererType.popupErrorState, failure.message)),
-                  debugPrint(failure.message)
                 },
             (data) => {
                   inputState.add(ContentState()),
-                  debugPrint(data.customer?.name),
-                  debugPrint(data.contact?.email)
                 });
   }
 

@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/app/helper_functions.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/domain/model/model.dart';
 import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
@@ -11,12 +10,12 @@ class LoginUseCase extends BaseUseCase<LoginUseCaseInput, Authentication> {
 
   @override
   Future<Either<Failure, Authentication>> call(LoginUseCaseInput params) async {
-    Device device = await getDeviceInfo();
+    // Device device = await getDeviceInfo();
     return await _authRepository.login(LoginRequest(
       email: params.email,
       password: params.password,
-      imei: device.identifier,
-      deviceName: device.name,
+      imei: "",
+      deviceName: "",
     ));
   }
 }

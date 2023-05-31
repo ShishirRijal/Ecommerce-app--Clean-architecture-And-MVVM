@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://shishirrijal.wiremockapi.cloud/';
+    baseUrl ??= 'https://shishirrijal.wiremockapi.cloud';
   }
 
   final Dio _dio;
@@ -36,20 +36,20 @@ class _AppServiceClient implements AppServiceClient {
       'imei': imei,
       'device_name': deviceName,
     };
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AuthResponse>(Options(
+    final _result = await _dio.fetch(_setStreamType<AuthResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/customers/login',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AuthResponse.fromJson(_result.data!);
+        .compose(
+          _dio.options,
+          '/customers/login',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final Map<String, dynamic> data = jsonDecode(_result.data);
+    final value = AuthResponse.fromJson(data);
     return value;
   }
 
