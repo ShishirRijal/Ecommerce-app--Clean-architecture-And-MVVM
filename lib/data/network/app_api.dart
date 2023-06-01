@@ -18,4 +18,9 @@ abstract class AppServiceClient {
     @Field('imei') required String imei,
     @Field('device_name') required String deviceName,
   });
+
+  @POST('/forgot-password')
+  Future<ForgotPasswordResponse> forgotPassword({
+    @Field('email') required String email,
+  });
 }
