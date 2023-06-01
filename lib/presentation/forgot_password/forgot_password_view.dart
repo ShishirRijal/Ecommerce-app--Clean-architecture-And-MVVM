@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app/di.dart';
 import '../../core.dart/core.dart';
-import '../common/state_renderer/state_render_implementer.dart';
 import 'forgot_password_viewmodel.dart';
 
 class ForgotPasswordView extends StatefulWidget {

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 

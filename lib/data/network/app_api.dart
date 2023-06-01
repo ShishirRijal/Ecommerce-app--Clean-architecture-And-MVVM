@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/app/constants.dart';
 import 'package:ecommerce_app/data/data.dart';

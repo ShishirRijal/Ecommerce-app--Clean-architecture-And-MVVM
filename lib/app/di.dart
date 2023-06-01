@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
-import 'package:ecommerce_app/data/data_source/remote_data_source.dart';
-import 'package:ecommerce_app/data/data_source/remote_data_source_impl.dart';
 import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';

@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/data/data.dart';
-import 'package:ecommerce_app/data/data_source/remote_data_source.dart';
 import 'package:ecommerce_app/domain/model/model.dart';
 import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
 
