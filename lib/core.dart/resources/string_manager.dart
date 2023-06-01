@@ -31,6 +31,9 @@ class AppString {
   static const String invalidEmail = "Invalid email";
   static const String invalidPassword = "Invalid password";
   static const String invalidMobileNumber = "Invalid mobile number";
+  static const String emailHint = 'aaa@company.com';
+  static const String email = 'Email';
+  static const String resetPassword = "Reset Password";
 
   //
 }

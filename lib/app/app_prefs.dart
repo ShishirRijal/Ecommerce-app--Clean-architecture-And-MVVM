@@ -31,4 +31,9 @@ class AppPreferences {
     bool? result = _sharedPrefs.getBool(prefsIsUserLoggedIn);
     return result ?? false;
   }
+
+  // ! CAUTION: Clears all the data from shared preferences
+  Future<void> clearAll() async {
+    await _sharedPrefs.clear();
+  }
 }
