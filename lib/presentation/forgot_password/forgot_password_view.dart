@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
 import '../../core.dart/core.dart';
@@ -11,7 +12,7 @@ class ForgotPasswordView extends StatefulWidget {
 }
 
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
-  final ForgotPasswordViewModel _viewModel = ForgotPasswordViewModel();
+  final ForgotPasswordViewModel _viewModel = getIt<ForgotPasswordViewModel>();
   final _formKey = GlobalKey<FormState>();
   final _emailTextEditingController = TextEditingController();
 
@@ -86,10 +87,6 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                   _viewModel.forgotPassword();
                                 }
                               : null,
-
-                          // onPressed: (snapshot.data ?? false)
-                          //     ? () => _viewModel.forgotPassword()
-                          //     : null,
                           child: const Text(AppString.resetPassword),
                         );
                       }),

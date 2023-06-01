@@ -1,6 +1,9 @@
 import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
+import 'package:ecommerce_app/domain/repositories/respositories.dart';
+import 'package:ecommerce_app/domain/usecases/forgot_password_usecase.dart';
+import 'package:ecommerce_app/presentation/forgot_password/forgot_password_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,11 +34,21 @@ Future<void> setup() async {
   // auth repo
   getIt.registerLazySingleton<AuthRepository>(() =>
       AuthRepositoryImpl(networkInfo: getIt(), remoteDataSource: getIt()));
+  getIt.registerLazySingleton<ForgotPasswordRepository>(() =>
+      ForgotPasswordRepositoryImpl(
+          networkInfo: getIt(), remoteDataSource: getIt()));
 }
 
 void initLogin() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     getIt.registerFactory(() => LoginUseCase(getIt()));
     getIt.registerFactory(() => LoginViewModel(loginUseCase: getIt()));
+  }
+}
+
+void initForgotPassword() {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    getIt.registerFactory(() => ForgotPasswordUseCase(getIt()));
+    getIt.registerFactory(() => ForgotPasswordViewModel(getIt()));
   }
 }
