@@ -15,4 +15,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       deviceName: "",
     );
   }
+
+  @override
+  Future<ForgotPasswordResponse> forgotPassword(String email) async {
+    return await _client.forgotPassword(email: email);
+  }
 }
