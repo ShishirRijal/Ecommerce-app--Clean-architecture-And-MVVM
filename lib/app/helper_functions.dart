@@ -37,3 +37,9 @@ Future<Device> getDeviceInfo() async {
     return Device(name, identifier, version);
   }
 }
+
+bool isEmailValid(String email) {
+  return RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(email);
+}

@@ -59,8 +59,8 @@ class _AppServiceClient implements AppServiceClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'email': email};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ForgotPasswordResponse>(Options(
+    final _result =
+        await _dio.fetch(_setStreamType<ForgotPasswordResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -72,7 +72,8 @@ class _AppServiceClient implements AppServiceClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ForgotPasswordResponse.fromJson(_result.data!);
+    var value = jsonDecode(_result.data);
+    value = ForgotPasswordResponse.fromJson(value);
     return value;
   }
 

@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
-import 'package:ecommerce_app/domain/repositories/auth_repository.dart';
 import 'package:ecommerce_app/domain/repositories/respositories.dart';
 import 'package:ecommerce_app/domain/usecases/forgot_password_usecase.dart';
 import 'package:ecommerce_app/presentation/forgot_password/forgot_password_viewmodel.dart';

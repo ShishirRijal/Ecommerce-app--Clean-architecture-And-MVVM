@@ -2,6 +2,7 @@ import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
 import '../../core.dart/core.dart';
+import '../common/state_renderer/state_render_implementer.dart';
 import 'forgot_password_viewmodel.dart';
 
 class ForgotPasswordView extends StatefulWidget {
@@ -32,7 +33,16 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _getContentWidget(),
+      body: StreamBuilder<FlowState>(
+        stream: _viewModel.outputState,
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(context, _getContentWidget(),
+                  () {
+                _viewModel.forgotPassword();
+              }) ??
+              _getContentWidget();
+        },
+      ),
     );
   }
 

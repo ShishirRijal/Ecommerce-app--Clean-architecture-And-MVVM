@@ -16,7 +16,8 @@ class ForgotPasswordRepositoryImpl extends ForgotPasswordRepository {
     if (await networkInfo.isConnected) {
       try {
         final response = await remoteDataSource.forgotPassword(email);
-        if (response.status == ApiInternalStatus.SUCCESS) {
+
+        if (response.status == 200) {
           return Right(response.toDomain());
         } else {
           return Left(Failure(

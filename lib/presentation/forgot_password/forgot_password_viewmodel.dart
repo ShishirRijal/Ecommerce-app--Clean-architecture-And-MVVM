@@ -30,12 +30,12 @@ class ForgotPasswordViewModel extends BaseViewModel
   forgotPassword() async {
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.popupLoadingState));
-
-    return (await _forgotPasswordUseCase(email)).fold(
-        (failure) => inputState.add(
-              ErrorState(StateRendererType.popupErrorState, failure.message),
-            ),
-        (success) => inputState.add(ContentState()));
+    return (await _forgotPasswordUseCase(email)).fold((failure) {
+      inputState
+          .add(ErrorState(StateRendererType.popupErrorState, failure.message));
+    }, (success) {
+      inputState.add(SuccessState(success));
+    });
   }
 
   @override
