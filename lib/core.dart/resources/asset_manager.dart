@@ -15,6 +15,7 @@ class SvgAssets {
   static const String rightArrow = '$svgPath/right_arrow_ic.svg';
   static const String solidCircle = '$svgPath/solid_circle_ic.svg';
   static const String hollowCircle = '$svgPath/hollow_circle_ic.svg';
+  static const String camera = '$svgPath/photo_camera_ic.svg';
 }
 
 class JsonAssets {

@@ -6,6 +6,7 @@ import 'package:ecommerce_app/domain/usecases/register_usecase.dart';
 import 'package:ecommerce_app/presentation/forgot_password/forgot_password_viewmodel.dart';
 import 'package:ecommerce_app/presentation/register/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,6 +58,7 @@ void initForgotPassword() {
 void initRegister() {
   if (!GetIt.I.isRegistered<RegisterUseCase>()) {
     getIt.registerFactory(() => RegisterUseCase(getIt()));
+    getIt.registerFactory<ImagePicker>(() => ImagePicker());
     getIt.registerFactory(() => RegisterViewModel(getIt()));
   }
 }
