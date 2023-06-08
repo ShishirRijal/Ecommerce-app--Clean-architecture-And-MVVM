@@ -5,6 +5,8 @@ import 'package:ecommerce_app/presentation/presentation.dart';
 import 'package:ecommerce_app/app/helper_functions.dart' as util;
 import '../../core.dart/core.dart';
 import '../../domain/usecases/register_usecase.dart';
+import '../common/state_renderer/state_render_implementer.dart';
+import '../common/state_renderer/state_renderer.dart';
 
 class RegisterViewModel extends BaseViewModel
     with RegisterViewModelInputs, RegisterViewModelOutputs {
@@ -30,7 +32,7 @@ class RegisterViewModel extends BaseViewModel
   final StreamController isUserLoggedInSuccessfullyStreamController =
       StreamController<bool>();
 
-  var registerViewObject = RegisterObject(
+  var registerObject = RegisterObject(
       countryMobileCode: '',
       username: '',
       email: '',
@@ -58,9 +60,25 @@ class RegisterViewModel extends BaseViewModel
 
   //! Inputs
   @override
-  register() {
-    // TODO: implement register
-    throw UnimplementedError();
+  register() async {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.popupLoadingState));
+    return (await _registerUseCase(RegisterUseCaseInput(
+      email: registerObject.username,
+      password: registerObject.password,
+      mobileNumber: registerObject.mobileNumber,
+      profilePicture: registerObject.profilePicture,
+      username: registerObject.username,
+      countryMobileCode: registerObject.countryMobileCode,
+    )))
+        .fold(
+            (failure) => {
+                  inputState.add(ErrorState(
+                      StateRendererType.popupErrorState, failure.message)),
+                }, (data) {
+      inputState.add(ContentState());
+      // navigate to main screen after login...
+    });
   }
 
   @override
@@ -85,11 +103,10 @@ class RegisterViewModel extends BaseViewModel
   setCountryCode(String countryCode) {
     if (countryCode.isNotEmpty) {
       // update register view object with countryCode value
-      registerViewObject =
-          registerViewObject.copyWith(countryMobileCode: countryCode);
+      registerObject = registerObject.copyWith(countryMobileCode: countryCode);
     } else {
       // reset countryCode value in register view object
-      registerViewObject = registerViewObject.copyWith(countryMobileCode: "");
+      registerObject = registerObject.copyWith(countryMobileCode: "");
     }
     _validate();
   }
@@ -99,10 +116,10 @@ class RegisterViewModel extends BaseViewModel
     inputEmail.add(email);
     if (util.isEmailValid(email)) {
       // update register view object with email value
-      registerViewObject = registerViewObject.copyWith(email: email);
+      registerObject = registerObject.copyWith(email: email);
     } else {
       // reset email value in register view object
-      registerViewObject = registerViewObject.copyWith(email: "");
+      registerObject = registerObject.copyWith(email: "");
     }
     _validate();
   }
@@ -112,11 +129,11 @@ class RegisterViewModel extends BaseViewModel
     inputMobileNumber.add(mobileNumber);
     if (_isMobileNumberValid(mobileNumber)) {
       // update register view object with mobileNumber value
-      registerViewObject = registerViewObject.copyWith(
+      registerObject = registerObject.copyWith(
           mobileNumber: mobileNumber); // using data class like kotlin
     } else {
       // reset mobileNumber value in register view object
-      registerViewObject = registerViewObject.copyWith(mobileNumber: "");
+      registerObject = registerObject.copyWith(mobileNumber: "");
     }
     _validate();
   }
@@ -125,11 +142,11 @@ class RegisterViewModel extends BaseViewModel
   setPassword(String password) {
     if (_isPasswordValid(password)) {
       // update register view object with password value
-      registerViewObject = registerViewObject.copyWith(
+      registerObject = registerObject.copyWith(
           password: password); // using data class like kotlin
     } else {
       // reset password value in register view object
-      registerViewObject = registerViewObject.copyWith(password: "");
+      registerObject = registerObject.copyWith(password: "");
     }
     _validate();
   }
@@ -139,11 +156,11 @@ class RegisterViewModel extends BaseViewModel
     inputProfilePicture.add(file);
     if (file.path.isNotEmpty) {
       // update register view object with profilePicture value
-      registerViewObject = registerViewObject.copyWith(
+      registerObject = registerObject.copyWith(
           profilePicture: file.path); // using data class like kotlin
     } else {
       // reset profilePicture value in register view object
-      registerViewObject = registerViewObject.copyWith(profilePicture: "");
+      registerObject = registerObject.copyWith(profilePicture: "");
     }
     _validate();
   }
@@ -152,11 +169,11 @@ class RegisterViewModel extends BaseViewModel
   setUserName(String userName) {
     if (_isUsernameValid(userName)) {
       // update register view object with username value
-      registerViewObject = registerViewObject.copyWith(
+      registerObject = registerObject.copyWith(
           username: userName); // using data class like kotlin
     } else {
       // reset username value in register view object
-      registerViewObject = registerViewObject.copyWith(username: "");
+      registerObject = registerObject.copyWith(username: "");
     }
     _validate();
   }
@@ -215,12 +232,12 @@ class RegisterViewModel extends BaseViewModel
   }
 
   bool _validateAllInputs() {
-    return registerViewObject.profilePicture.isNotEmpty &&
-        registerViewObject.email.isNotEmpty &&
-        registerViewObject.password.isNotEmpty &&
-        registerViewObject.mobileNumber.isNotEmpty &&
-        registerViewObject.username.isNotEmpty &&
-        registerViewObject.countryMobileCode.isNotEmpty;
+    return registerObject.profilePicture.isNotEmpty &&
+        registerObject.email.isNotEmpty &&
+        registerObject.password.isNotEmpty &&
+        registerObject.mobileNumber.isNotEmpty &&
+        registerObject.username.isNotEmpty &&
+        registerObject.countryMobileCode.isNotEmpty;
   }
 
   _validate() {
