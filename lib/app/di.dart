@@ -2,7 +2,9 @@ import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/domain/repositories/respositories.dart';
 import 'package:ecommerce_app/domain/usecases/forgot_password_usecase.dart';
+import 'package:ecommerce_app/domain/usecases/register_usecase.dart';
 import 'package:ecommerce_app/presentation/forgot_password/forgot_password_viewmodel.dart';
+import 'package:ecommerce_app/presentation/register/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,5 +51,12 @@ void initForgotPassword() {
   if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
     getIt.registerFactory(() => ForgotPasswordUseCase(getIt()));
     getIt.registerFactory(() => ForgotPasswordViewModel(getIt()));
+  }
+}
+
+void initRegister() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    getIt.registerFactory(() => RegisterUseCase(getIt()));
+    getIt.registerFactory(() => RegisterViewModel(getIt()));
   }
 }
