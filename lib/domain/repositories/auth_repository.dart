@@ -6,4 +6,6 @@ import 'package:ecommerce_app/domain/model/auth.dart';
 /// implement the methods in [AuthRepositoryImpl] class.
 abstract class AuthRepository {
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
+  Future<Either<Failure, Authentication>> register(
+      RegisterRequest registerRequest);
 }

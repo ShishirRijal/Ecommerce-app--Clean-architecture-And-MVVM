@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/app/constants.dart';
 import 'package:ecommerce_app/data/data.dart';
@@ -22,5 +20,14 @@ abstract class AppServiceClient {
   @POST('/forgot-password')
   Future<ForgotPasswordResponse> forgotPassword({
     @Field('email') required String email,
+  });
+
+  @POST('/customers/register')
+  Future<AuthResponse> register({
+    @Field('country_mobile_code') required String countryMobileCode,
+    @Field('username') required String username,
+    @Field('email') required String email,
+    @Field('password') required String password,
+    @Field('profile_picture') required String profilePicture,
   });
 }

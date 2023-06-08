@@ -19,4 +19,14 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   Future<ForgotPasswordResponse> forgotPassword(String email) async {
     return await _client.forgotPassword(email: email);
   }
+
+  @override
+  Future<AuthResponse> register(RegisterRequest registerRequest) async {
+    return await _client.register(
+        countryMobileCode: registerRequest.countryMobileCode,
+        username: registerRequest.username,
+        email: registerRequest.email,
+        password: registerRequest.password,
+        profilePicture: registerRequest.password);
+  }
 }
