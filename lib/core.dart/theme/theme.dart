@@ -83,6 +83,10 @@ ThemeData getApplicationTheme() {
     //text theme
     textTheme: TextTheme(
       headlineLarge: getSemiBoldTextStyle(), // headline 1
+      headlineMedium: getRegularTextStyle(
+        color: ColorManager.white,
+        size: FontSize.s16,
+      ), // headline 2
       labelLarge: getMediumTextStyle(), // subtitle 1
       labelMedium:
           getRegularTextStyle(color: ColorManager.primary), // subtitle 2
