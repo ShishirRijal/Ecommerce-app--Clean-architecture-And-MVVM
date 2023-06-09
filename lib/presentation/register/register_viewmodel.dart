@@ -64,7 +64,7 @@ class RegisterViewModel extends BaseViewModel
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.popupLoadingState));
     return (await _registerUseCase(RegisterUseCaseInput(
-      email: registerObject.username,
+      email: registerObject.email,
       password: registerObject.password,
       mobileNumber: registerObject.mobileNumber,
       profilePicture: registerObject.profilePicture,
@@ -77,7 +77,8 @@ class RegisterViewModel extends BaseViewModel
                       StateRendererType.popupErrorState, failure.message)),
                 }, (data) {
       inputState.add(ContentState());
-      // navigate to main screen after login...
+      // navigate to main screen
+      isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
@@ -234,8 +235,7 @@ class RegisterViewModel extends BaseViewModel
   }
 
   bool _validateAllInputs() {
-    return registerObject.profilePicture.isNotEmpty &&
-        registerObject.email.isNotEmpty &&
+    return registerObject.email.isNotEmpty &&
         registerObject.password.isNotEmpty &&
         registerObject.mobileNumber.isNotEmpty &&
         registerObject.username.isNotEmpty &&

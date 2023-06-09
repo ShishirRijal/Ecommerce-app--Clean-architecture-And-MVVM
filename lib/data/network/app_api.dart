@@ -28,6 +28,7 @@ abstract class AppServiceClient {
     @Field('username') required String username,
     @Field('email') required String email,
     @Field('password') required String password,
+    @Field('mobile_number') required String mobileNumber,
     @Field('profile_picture') required String profilePicture,
   });
 }

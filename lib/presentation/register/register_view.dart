@@ -4,9 +4,11 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:ecommerce_app/app/di.dart';
 import 'package:ecommerce_app/presentation/register/register_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../app/app_prefs.dart';
 import '../../core.dart/core.dart';
 import '../common/state_renderer/state_render_implementer.dart';
 
@@ -19,7 +21,7 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   final RegisterViewModel _viewModel = getIt<RegisterViewModel>();
-
+  final AppPreferences _appPreferences = getIt<AppPreferences>();
   final _formKey = GlobalKey<FormState>();
   ImagePicker picker = getIt<ImagePicker>();
   final TextEditingController _userNameTextEditingController =
@@ -46,6 +48,13 @@ class _RegisterViewState extends State<RegisterView> {
 
     _mobileNumberTextEditingController.addListener(() {
       _viewModel.setMobileNumber(_mobileNumberTextEditingController.text);
+    });
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((isLoggedIn) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        _appPreferences.setUserLoggedIn();
+        Navigator.pushReplacementNamed(context, Routes.mainRoute);
+      });
     });
   }
 
