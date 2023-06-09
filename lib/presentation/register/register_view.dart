@@ -251,7 +251,7 @@ class _RegisterViewState extends State<RegisterView> {
           const Flexible(child: Text(AppString.profilePicture)),
           Flexible(
               child: StreamBuilder<File?>(
-            stream: _viewModel.isProfilePictureValid,
+            stream: _viewModel.outputProfilePicture,
             builder: (context, snapshot) {
               return _imagePickedByUser(snapshot.data);
             },

@@ -10,7 +10,7 @@ import '../common/state_renderer/state_renderer.dart';
 
 class RegisterViewModel extends BaseViewModel
     with RegisterViewModelInputs, RegisterViewModelOutputs {
-  RegisterUseCase _registerUseCase;
+  final RegisterUseCase _registerUseCase;
   RegisterViewModel(this._registerUseCase);
 
   final StreamController _userNameStreamController =
@@ -140,6 +140,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     if (_isPasswordValid(password)) {
       // update register view object with password value
       registerObject = registerObject.copyWith(
@@ -167,6 +168,7 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   setUserName(String userName) {
+    inputUsername.add(userName);
     if (_isUsernameValid(userName)) {
       // update register view object with username value
       registerObject = registerObject.copyWith(
@@ -200,7 +202,7 @@ class RegisterViewModel extends BaseViewModel
       .map((password) => _isPasswordValid(password));
 
   @override
-  Stream<File> get isProfilePictureValid =>
+  Stream<File> get outputProfilePicture =>
       _profilePictureStreamController.stream.map((picture) => picture);
 
   @override
@@ -276,6 +278,6 @@ abstract class RegisterViewModelOutputs {
   Stream<bool> get isPasswordValid;
   Stream<String?> get passwordErrorText;
 
-  Stream<File> get isProfilePictureValid;
+  Stream<File> get outputProfilePicture;
   Stream<bool> get isAllInputsValid;
 }
