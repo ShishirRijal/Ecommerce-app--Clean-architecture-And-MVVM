@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../app/app_prefs.dart';
@@ -35,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: SvgPicture.asset(SvgAssets.settingRightArrow),
           ),
           onTap: () {
-            // _changeLanguage();
+            _changeLanguage();
           },
         ),
         ListTile(
@@ -88,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   bool isRtl() {
-    return false;
+    return context.locale == nepaliLocal;
   }
 
   void _contactUs() {
@@ -97,5 +98,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _inviteFriends() {
     // its a task to share app name with friends
+  }
+  void _changeLanguage() {
+    _appPreferences.setAppLanaguage();
+    Phoenix.rebirth(context); // restart to apply changes
   }
 }
