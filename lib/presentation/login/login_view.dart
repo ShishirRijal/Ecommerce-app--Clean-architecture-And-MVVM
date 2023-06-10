@@ -154,7 +154,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.pushReplacementNamed(
                             context, Routes.forgotPasswordRoute);
                       },
-                      child: Text(AppString.forgotPassword,
+                      child: Text(AppString.forgetPassword,
                           style: Theme.of(context).textTheme.labelMedium),
                     ),
                   ),
@@ -164,7 +164,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.pushReplacementNamed(
                             context, Routes.registerRoute);
                       },
-                      child: Text(AppString.registerNow,
+                      child: Text(AppString.registerText,
                           style: Theme.of(context).textTheme.labelMedium),
                     ),
                   ),

@@ -71,7 +71,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         controller: _emailTextEditingController,
                         decoration: InputDecoration(
                           hintText: AppString.emailHint,
-                          labelText: AppString.email,
+                          labelText: AppString.emailHint,
                           errorText: (snapshot.data ?? true)
                               ? null
                               : AppString.invalidEmail,

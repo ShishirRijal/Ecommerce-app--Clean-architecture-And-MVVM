@@ -226,7 +226,7 @@ class _RegisterViewState extends State<RegisterView> {
                                     _viewModel.register();
                                   }
                                 : null,
-                            child: const Text(AppString.registerNow),
+                            child: const Text(AppString.register),
                           ),
                         );
                       },

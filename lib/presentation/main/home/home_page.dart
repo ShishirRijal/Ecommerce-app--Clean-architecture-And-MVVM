@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               _getBanner(snapshot.data?.banners),
               _getSection(AppString.services),
               _getServicesWidget(snapshot.data?.services),
-              _getSection(AppString.stores),
+              _getSection(AppString.store),
               _getStoresWidget(snapshot.data?.stores),
             ],
           );

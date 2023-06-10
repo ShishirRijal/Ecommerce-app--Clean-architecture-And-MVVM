@@ -61,13 +61,13 @@ class OnboardingViewModel extends BaseViewModel
 
 // ! Private Functions
   List<SliderObject> _getSlideObjects() => [
-        SliderObject(AppString.onboardingTitle1, AppString.onboardingSubtitle1,
+        SliderObject(AppString.onBoardingTitle1, AppString.onBoardingSubTitle1,
             SvgAssets.onboardingLogo1),
-        SliderObject(AppString.onboardingTitle2, AppString.onboardingSubtitle2,
+        SliderObject(AppString.onBoardingTitle2, AppString.onBoardingSubTitle2,
             SvgAssets.onboardingLogo2),
-        SliderObject(AppString.onboardingTitle3, AppString.onboardingSubtitle3,
+        SliderObject(AppString.onBoardingTitle3, AppString.onBoardingSubTitle3,
             SvgAssets.onboardingLogo3),
-        SliderObject(AppString.onboardingTitle4, AppString.onboardingSubtitle4,
+        SliderObject(AppString.onBoardingTitle4, AppString.onBoardingSubTitle4,
             SvgAssets.onboardingLogo4),
       ];
 

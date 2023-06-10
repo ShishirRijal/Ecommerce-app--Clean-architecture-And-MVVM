@@ -81,7 +81,7 @@ class _StoreDetailViewState extends State<StoreDetailView> {
             width: double.infinity,
             height: 250,
           )),
-          _getSection(AppString.detail),
+          _getSection(AppString.details),
           _getInfoText(storeDetails.details),
           _getSection(AppString.services),
           _getInfoText(storeDetails.services),
