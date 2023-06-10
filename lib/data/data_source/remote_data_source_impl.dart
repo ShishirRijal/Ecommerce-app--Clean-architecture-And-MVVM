@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/data/data.dart';
 
+import '../responses/home_data_response.dart';
+
 class RemoteDataSourceImpl implements RemoteDataSource {
   RemoteDataSourceImpl(this._client);
 
@@ -29,5 +31,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         password: registerRequest.password,
         mobileNumber: registerRequest.mobileNumber,
         profilePicture: "");
+  }
+
+  @override
+  Future<HomeResponse> home() async {
+    return await _client.home();
   }
 }
