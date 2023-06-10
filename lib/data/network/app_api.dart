@@ -3,6 +3,8 @@ import 'package:ecommerce_app/app/constants.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:retrofit/http.dart';
 
+import '../responses/home_data_response.dart';
+
 part 'app_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseUrl)
@@ -31,4 +33,7 @@ abstract class AppServiceClient {
     @Field('mobile_number') required String mobileNumber,
     @Field('profile_picture') required String profilePicture,
   });
+
+  @POST('/home')
+  Future<HomeResponse> home();
 }
