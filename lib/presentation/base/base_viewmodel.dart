@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract class BaseViewModel with BaseViewModelInputs, BaseViewModelOutputs {
   // shared functions and methods that are common to all view models
 
   // to display the correct state of the view depending on the state of the view model
   final StreamController _inputStateStreamController =
-      StreamController<FlowState>.broadcast();
+      BehaviorSubject<FlowState>();
 
   // we don't want  every screen to override the inputState and output state, so we override it here
   @override

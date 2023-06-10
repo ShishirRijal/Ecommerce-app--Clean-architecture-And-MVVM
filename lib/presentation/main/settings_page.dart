@@ -25,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ListTile(
           title: Text(
             AppString.changeLanguage,
-            style: Theme.of(context).textTheme.displayLarge, // TODO:
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           leading: SvgPicture.asset(SvgAssets.changeLanguage),
           trailing: Transform(
@@ -87,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   bool isRtl() {
-    return false; // TODO:
+    return false;
   }
 
   void _contactUs() {
