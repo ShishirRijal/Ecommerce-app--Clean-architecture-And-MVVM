@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core.dart/resources/string_manager.dart';
+import '../../../core.dart/resources/string_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
