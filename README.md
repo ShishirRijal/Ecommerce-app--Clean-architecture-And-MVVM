@@ -1,16 +1,24 @@
-# ecommerce_app
+# Ecommerce App
+### An ecommerce app baked with flutter using the Clean Code Architecture and MVVM principles.
+This project is build while pursuing the <strong>Flutter Advanced Course - Clean Architecture With MVVM</strong> course on Udemy by <strong>Mina Farid</strong>. 
 
-A new Flutter project.
 
-## Getting Started
+## Features
+<ol>
+  <li>Login</li>
+  <li>Forgot Password </li>
+  <li>Registration</li>
+  <li>Validation</li>  
+  <li>Exception Handling</li> 
+  <li>Functional Programming</li>
+  <li>Writing your own rest api and working with it</li>
+  <li>Code against the interface</li>
+  <li>Localization</li> 
+  <li>Clean Code</li>
+  <li>MVVM</li>
+</ol>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## App Snaps
+<img src="assets/snaps/onboarding1.png" height="550"> <img src="assets/snaps/onboarding2.png" height="550"><img src="assets/snaps/login.png" height="550"><img src="assets/snaps/login-validated.png" height="550"><img src="assets/snaps/forgot-password.png" height="550"><img src="assets/snaps/forgot-password-validated.png" height="550"><img src="assets/snaps/registration.png" height="550"><img src="assets/snaps/registration-validation.png" height="550"><img src="assets/snaps/registration-validated.png" height="550"><img src="assets/snaps/loading.png" height="550"><img src="assets/snaps/error.png" height="550"><img src="assets/snaps/home.png" height="550"><img src="assets/snaps/home-arabic.png" height="550"><img src="assets/snaps/setting.png" height="550"><img src="assets/snaps/setting-arabic.png" height="550">
