@@ -118,7 +118,7 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    Map<String, dynamic>? _data;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<HomeResponse>(Options(
       method: 'POST',

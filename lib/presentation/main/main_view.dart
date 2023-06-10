@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core.dart/core.dart';
-import 'home_page.dart';
+import 'home/home_page.dart';
 import 'notifications_page.dart';
 import 'search_page.dart';
 import 'settings_page.dart';
