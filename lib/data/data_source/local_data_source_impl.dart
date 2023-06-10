@@ -2,8 +2,12 @@ import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/data/data_source/local_data_source.dart';
 import 'package:ecommerce_app/data/responses/home_data_response.dart';
 
+import '../responses/store_detail_response.dart';
+
 const cacheHomeKey = 'CACHE_HOME_KEY';
 const cacheHomeInterval = 60 * 1000; // 1 minute
+const cacheStoreDetailkey = "CACHE_STORE_DETAILS_KEY";
+const cacheStoreDetailInterval = 60 * 1000; //
 
 class LocalDataSourceImpl extends LocalDataSource {
   // run time cache
@@ -12,7 +16,7 @@ class LocalDataSourceImpl extends LocalDataSource {
   @override
   Future<HomeResponse> getHome() {
     CacheItem? cacheItem = cacheMap[cacheHomeKey];
-    if (cacheItem != null && cacheItem.isValid) {
+    if (cacheItem != null && cacheItem.isValid(cacheHomeInterval)) {
       // return response from cache
       return Future.value(cacheItem.data);
     }
@@ -23,6 +27,22 @@ class LocalDataSourceImpl extends LocalDataSource {
   @override
   Future<void> saveHomeToCache(HomeResponse homeResponse) async {
     cacheMap[cacheHomeKey] = CacheItem(homeResponse);
+  }
+
+  @override
+  Future<StoreDetailResponse> getStoreDetails() async {
+    CacheItem? cacheItem = cacheMap[cacheStoreDetailkey];
+
+    if (cacheItem != null && cacheItem.isValid(cacheStoreDetailInterval)) {
+      return cacheItem.data;
+    } else {
+      throw ErrorHandler.handle(StatusCode.CACHE_ERROR);
+    }
+  }
+
+  @override
+  Future<void> saveStoreDetailsToCache(StoreDetailResponse response) async {
+    cacheMap[cacheStoreDetailkey] = CacheItem(response);
   }
 
   @override
@@ -45,8 +65,7 @@ class CacheItem {
 }
 
 extension on CacheItem {
-  bool get isValid {
-    return DateTime.now().millisecondsSinceEpoch - cacheHomeInterval <
-        cacheTime;
+  bool isValid(int expireTime) {
+    return DateTime.now().millisecondsSinceEpoch - expireTime < cacheTime;
   }
 }
