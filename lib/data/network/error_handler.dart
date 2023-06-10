@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../failure/failure.dart';
 
@@ -71,37 +72,37 @@ extension StatusCodeExtension on StatusCode {
   Failure getFailure() {
     switch (this) {
       case StatusCode.BAD_REQUEST:
-        return const Failure(
-            ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST);
+        return Failure(
+            ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST.tr());
       case StatusCode.FORBIDDEN:
-        return const Failure(ResponseCode.FORBIDDEN, ResponseMessage.FORBIDDEN);
+        return Failure(ResponseCode.FORBIDDEN, ResponseMessage.FORBIDDEN.tr());
       case StatusCode.UNAUTHORISED:
-        return const Failure(
-            ResponseCode.UNAUTHORISED, ResponseMessage.UNAUTHORISED);
+        return Failure(
+            ResponseCode.UNAUTHORISED, ResponseMessage.UNAUTHORISED.tr());
       case StatusCode.NOT_FOUND:
-        return const Failure(ResponseCode.NOT_FOUND, ResponseMessage.NOT_FOUND);
+        return Failure(ResponseCode.NOT_FOUND, ResponseMessage.NOT_FOUND.tr());
       case StatusCode.INTERNAL_SERVER_ERROR:
-        return const Failure(ResponseCode.INTERNAL_SERVER_ERROR,
-            ResponseMessage.INTERNAL_SERVER_ERROR);
+        return Failure(ResponseCode.INTERNAL_SERVER_ERROR,
+            ResponseMessage.INTERNAL_SERVER_ERROR.tr());
       case StatusCode.CONNECTION_TIMEOUT:
-        return const Failure(ResponseCode.CONNECTION_TIMEOUT,
-            ResponseMessage.CONNECTION_TIMEOUT);
+        return Failure(ResponseCode.CONNECTION_TIMEOUT,
+            ResponseMessage.CONNECTION_TIMEOUT.tr());
       case StatusCode.CANCEL:
-        return const Failure(ResponseCode.CANCEL, ResponseMessage.CANCEL);
+        return Failure(ResponseCode.CANCEL, ResponseMessage.CANCEL.tr());
       case StatusCode.RECEIVE_TIMEOUT:
-        return const Failure(
-            ResponseCode.RECEIVE_TIMEOUT, ResponseMessage.RECEIVE_TIMEOUT);
+        return Failure(
+            ResponseCode.RECEIVE_TIMEOUT, ResponseMessage.RECEIVE_TIMEOUT.tr());
       case StatusCode.SEND_TIMEOUT:
-        return const Failure(
-            ResponseCode.SEND_TIMEOUT, ResponseMessage.SEND_TIMEOUT);
+        return Failure(
+            ResponseCode.SEND_TIMEOUT, ResponseMessage.SEND_TIMEOUT.tr());
       case StatusCode.CACHE_ERROR:
-        return const Failure(
-            ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR);
+        return Failure(
+            ResponseCode.CACHE_ERROR, ResponseMessage.CACHE_ERROR.tr());
       case StatusCode.NO_INTERNET_CONNECTION:
-        return const Failure(ResponseCode.NO_INTERNET_CONNECTION,
-            ResponseMessage.NO_INTERNET_CONNECTION);
+        return Failure(ResponseCode.NO_INTERNET_CONNECTION,
+            ResponseMessage.NO_INTERNET_CONNECTION.tr());
       default:
-        return const Failure(ResponseCode.UNKNOWN, ResponseMessage.UNKNOWN);
+        return Failure(ResponseCode.UNKNOWN, ResponseMessage.UNKNOWN.tr());
     }
   }
 }
