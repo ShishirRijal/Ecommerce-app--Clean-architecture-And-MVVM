@@ -5,7 +5,7 @@ import 'package:ecommerce_app/domain/repositories/store_detail_repository.dart';
 import '../model/store_detail.dart';
 import 'base_usecase.dart';
 
-class StoreDetailUseCase extends BaseUseCase<void, StoreDetail> {
+class StoreDetailUseCase extends BaseUseCase {
   StoreDetailRepository repository;
 
   StoreDetailUseCase(this.repository);

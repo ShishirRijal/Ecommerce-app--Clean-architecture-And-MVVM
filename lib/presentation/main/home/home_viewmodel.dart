@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecommerce_app/presentation/presentation.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -24,7 +26,7 @@ class HomeViewModel extends BaseViewModel
     inputState.add(LoadingState(
         stateRendererType: StateRendererType.fullScreenLoadingState));
 
-    (await _homeUseCase()).fold((failure) {
+    (await _homeUseCase(Void)).fold((failure) {
       inputState.add(
           ErrorState(StateRendererType.fullScreenErrorState, failure.message));
     }, (homeObject) {
