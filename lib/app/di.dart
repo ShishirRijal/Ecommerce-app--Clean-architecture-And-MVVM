@@ -2,7 +2,9 @@ import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:ecommerce_app/data/data_source/local_data_source.dart';
 import 'package:ecommerce_app/data/data_source/local_data_source_impl.dart';
+import 'package:ecommerce_app/data/repository_impl/store_detail_repository_impl.dart';
 import 'package:ecommerce_app/domain/repositories/respositories.dart';
+import 'package:ecommerce_app/domain/repositories/store_detail_repository.dart';
 import 'package:ecommerce_app/domain/usecases/forgot_password_usecase.dart';
 import 'package:ecommerce_app/domain/usecases/register_usecase.dart';
 import 'package:ecommerce_app/presentation/forgot_password/forgot_password_viewmodel.dart';
@@ -17,8 +19,10 @@ import '../data/repository_impl/home_repository_impl.dart';
 import '../domain/repositories/home_repository.dart';
 import '../domain/usecases/home_usecase.dart';
 import '../domain/usecases/login_usecase.dart';
+import '../domain/usecases/store_detail_usecase.dart';
 import '../presentation/login/login_viewmodel.dart';
 import '../presentation/main/home/home_viewmodel.dart';
+import '../presentation/store_detail/store_detail_viewmodel.dart';
 
 final getIt = GetIt.instance;
 
@@ -47,6 +51,12 @@ Future<void> setup() async {
   getIt.registerLazySingleton<ForgotPasswordRepository>(() =>
       ForgotPasswordRepositoryImpl(
           networkInfo: getIt(), remoteDataSource: getIt()));
+  getIt.registerLazySingleton<StoreDetailRepository>(
+      () => StoreDetailRepositoryImpl(
+            networkInfo: getIt(),
+            remoteDataSource: getIt(),
+            localDataSource: getIt(),
+          ));
   getIt.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(
         networkInfo: getIt(),
         remoteDataSource: getIt(),
@@ -80,5 +90,14 @@ void initHome() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
     getIt.registerFactory(() => HomeUseCase(getIt()));
     getIt.registerFactory(() => HomeViewModel(getIt()));
+  }
+}
+
+void initStoreDetail() {
+  if (!GetIt.I.isRegistered<StoreDetailUseCase>()) {
+    getIt
+        .registerFactory<StoreDetailUseCase>(() => StoreDetailUseCase(getIt()));
+    getIt.registerFactory<StoreDetailViewModel>(
+        () => StoreDetailViewModel(getIt()));
   }
 }
