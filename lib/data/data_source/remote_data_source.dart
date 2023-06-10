@@ -6,5 +6,5 @@ abstract class RemoteDataSource {
   Future<AuthResponse> login(LoginRequest loginRequest);
   Future<AuthResponse> register(RegisterRequest registerRequest);
   Future<ForgotPasswordResponse> forgotPassword(String email);
-  Future<HomeResponse> home();
+  Future<HomeResponse> getHome();
 }
