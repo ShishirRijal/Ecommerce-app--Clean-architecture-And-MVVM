@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/presentation/presentation.dart';
 import 'package:ecommerce_app/app/helper_functions.dart' as util;
 import '../../core.dart/core.dart';
@@ -192,7 +193,7 @@ class RegisterViewModel extends BaseViewModel
       _emailStreamController.stream.map((email) => util.isEmailValid(email));
   @override
   Stream<String?> get emailErrorText =>
-      isEmailValid.map((email) => email ? null : AppString.invalidEmail);
+      isEmailValid.map((email) => email ? null : AppString.invalidEmail.tr());
 
   @override
   Stream<bool> get isMobileNumberValid => _mobileNumberStreamController.stream
@@ -212,14 +213,14 @@ class RegisterViewModel extends BaseViewModel
 
   @override
   Stream<String?> get mobileNumberErrorText => isMobileNumberValid
-      .map((phone) => phone ? null : AppString.invalidMobileNumber);
+      .map((phone) => phone ? null : AppString.invalidMobileNumber.tr());
 
   @override
   Stream<String?> get passwordErrorText => isPasswordValid
-      .map((password) => password ? null : AppString.invalidPassword);
+      .map((password) => password ? null : AppString.invalidPassword.tr());
   @override
   Stream<String?> get usernameErrorText => isUsernameValid
-      .map((username) => username ? null : AppString.invalidUsername);
+      .map((username) => username ? null : AppString.invalidUsername.tr());
 
   //! Private Functions
   bool _isPasswordValid(String password) {

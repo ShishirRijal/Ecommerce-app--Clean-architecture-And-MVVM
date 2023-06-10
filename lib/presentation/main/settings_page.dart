@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
       children: [
         ListTile(
           title: Text(
-            AppString.changeLanguage,
+            AppString.changeLanguage.tr(),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           leading: SvgPicture.asset(SvgAssets.changeLanguage),
@@ -39,7 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         ListTile(
           title: Text(
-            AppString.contactUs,
+            AppString.contactUs.tr(),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           leading: SvgPicture.asset(SvgAssets.contactUs),
@@ -54,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         ListTile(
           title: Text(
-            AppString.inviteYourFriends,
+            AppString.inviteYourFriends.tr(),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           leading: SvgPicture.asset(SvgAssets.inviteFriends),
@@ -69,7 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         ListTile(
           title: Text(
-            AppString.logout,
+            AppString.logout.tr(),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           leading: SvgPicture.asset(SvgAssets.logout),

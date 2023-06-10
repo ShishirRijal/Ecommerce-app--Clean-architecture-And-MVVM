@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/presentation/base/base_viewmodel.dart';
 
 import '../../core.dart/core.dart';
@@ -61,14 +62,14 @@ class OnboardingViewModel extends BaseViewModel
 
 // ! Private Functions
   List<SliderObject> _getSlideObjects() => [
-        SliderObject(AppString.onBoardingTitle1, AppString.onBoardingSubTitle1,
-            SvgAssets.onboardingLogo1),
-        SliderObject(AppString.onBoardingTitle2, AppString.onBoardingSubTitle2,
-            SvgAssets.onboardingLogo2),
-        SliderObject(AppString.onBoardingTitle3, AppString.onBoardingSubTitle3,
-            SvgAssets.onboardingLogo3),
-        SliderObject(AppString.onBoardingTitle4, AppString.onBoardingSubTitle4,
-            SvgAssets.onboardingLogo4),
+        SliderObject(AppString.onBoardingTitle1.tr(),
+            AppString.onBoardingSubTitle1.tr(), SvgAssets.onboardingLogo1),
+        SliderObject(AppString.onBoardingTitle2.tr(),
+            AppString.onBoardingSubTitle2.tr(), SvgAssets.onboardingLogo2),
+        SliderObject(AppString.onBoardingTitle3.tr(),
+            AppString.onBoardingSubTitle3.tr(), SvgAssets.onboardingLogo3),
+        SliderObject(AppString.onBoardingTitle4.tr(),
+            AppString.onBoardingSubTitle4.tr(), SvgAssets.onboardingLogo4),
       ];
 
   void _postDataToView() {

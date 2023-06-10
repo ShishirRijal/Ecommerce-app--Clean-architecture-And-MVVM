@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/app/di.dart';
 import 'package:flutter/material.dart';
 
@@ -52,10 +53,10 @@ Route<dynamic> undefinedRoute() {
   return MaterialPageRoute(
     builder: (_) => Scaffold(
       appBar: AppBar(
-        title: const Text("No Route Defined!"),
+        title: Text(AppString.noRouteFound.tr()),
       ),
       body: Center(
-        child: Text("You are trying to access an undefined route...",
+        child: Text(AppString.noRouteFound.tr(),
             style: getSemiBoldTextStyle(
               color: ColorManager.error,
             )),

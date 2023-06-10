@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
 import 'package:ecommerce_app/presentation/login/login_viewmodel.dart';
@@ -90,11 +91,11 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.emailAddress,
                     controller: _userNameController,
                     decoration: InputDecoration(
-                        hintText: AppString.username,
-                        labelText: AppString.username,
+                        hintText: AppString.username.tr(),
+                        labelText: AppString.username.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppString.usernameError),
+                            : AppString.usernameError.tr()),
                   );
                 },
               ),
@@ -110,11 +111,11 @@ class _LoginViewState extends State<LoginView> {
                     keyboardType: TextInputType.visiblePassword,
                     controller: _passwordController,
                     decoration: InputDecoration(
-                        hintText: AppString.password,
-                        labelText: AppString.password,
+                        hintText: AppString.password.tr(),
+                        labelText: AppString.password.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppString.passwordError),
+                            : AppString.passwordError.tr()),
                   );
                 },
               ),
@@ -135,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                                   _viewModel.login();
                                 }
                               : null,
-                          child: const Text(AppString.login)),
+                          child: Text(AppString.login.tr())),
                     );
                   },
                 )),
@@ -154,7 +155,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.pushReplacementNamed(
                             context, Routes.forgotPasswordRoute);
                       },
-                      child: Text(AppString.forgetPassword,
+                      child: Text(AppString.forgetPassword.tr(),
                           style: Theme.of(context).textTheme.labelMedium),
                     ),
                   ),
@@ -164,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                         Navigator.pushReplacementNamed(
                             context, Routes.registerRoute);
                       },
-                      child: Text(AppString.registerText,
+                      child: Text(AppString.registerText.tr(),
                           style: Theme.of(context).textTheme.labelMedium),
                     ),
                   ),

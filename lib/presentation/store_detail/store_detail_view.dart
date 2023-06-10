@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/app/di.dart';
 import 'package:ecommerce_app/presentation/store_detail/store_detail_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _StoreDetailViewState extends State<StoreDetailView> {
     return Scaffold(
         backgroundColor: ColorManager.white,
         appBar: AppBar(
-          title: const Text(AppString.storeDetail),
+          title: Text(AppString.storeDetail.tr()),
           elevation: AppSize.s0,
           iconTheme: const IconThemeData(
             color: ColorManager.white,
@@ -81,11 +82,11 @@ class _StoreDetailViewState extends State<StoreDetailView> {
             width: double.infinity,
             height: 250,
           )),
-          _getSection(AppString.details),
+          _getSection(AppString.details.tr()),
           _getInfoText(storeDetails.details),
-          _getSection(AppString.services),
+          _getSection(AppString.services.tr()),
           _getInfoText(storeDetails.services),
-          _getSection(AppString.about),
+          _getSection(AppString.about.tr()),
           _getInfoText(storeDetails.about)
         ],
       );

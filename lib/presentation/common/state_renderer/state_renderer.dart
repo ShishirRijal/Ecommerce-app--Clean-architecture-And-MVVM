@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -23,14 +24,14 @@ class StateRenderer extends StatelessWidget {
   final Failure failure;
   final Function? retryActionFunction;
 
-  const StateRenderer(
+  StateRenderer(
       {Key? key,
       required this.stateRendererType,
       String? message,
       String? title,
       Failure? failure,
       required this.retryActionFunction})
-      : message = message ?? AppString.loading,
+      : message = message ?? AppString.loading.tr(),
         title = title ?? "EMPTY",
         failure = failure ?? const DefaultFailue(),
         super(key: key);
@@ -49,13 +50,13 @@ class StateRenderer extends StatelessWidget {
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppString.ok, context)
+          _getRetryButton(AppString.ok.tr(), context)
         ]);
       case StateRendererType.popupSuccess:
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.success),
           _getMessage(message),
-          _getRetryButton(AppString.ok, context)
+          _getRetryButton(AppString.ok.tr(), context)
         ]);
       case StateRendererType.fullScreenLoadingState:
         return _getItemsInColumn(
@@ -64,7 +65,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsInColumn([
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppString.retryAgain, context)
+          _getRetryButton(AppString.retryAgain.tr(), context)
         ]);
       case StateRendererType.contentScreenState:
         return Container();

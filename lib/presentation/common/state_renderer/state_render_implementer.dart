@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core.dart/core.dart';
@@ -16,7 +17,7 @@ class LoadingState extends FlowState {
   String message;
 
   LoadingState({required this.stateRendererType, String? message})
-      : message = message ?? AppString.loading;
+      : message = message ?? AppString.loading.tr();
 
   @override
   String getMessage() => message;
