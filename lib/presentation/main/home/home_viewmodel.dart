@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:ecommerce_app/presentation/common/state_renderer/state_render_implementer.dart';
+import 'package:ecommerce_app/presentation/common/state_renderer/state_renderer.dart';
 import 'package:ecommerce_app/presentation/presentation.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -8,8 +10,8 @@ import '../../../domain/usecases/home_usecase.dart';
 
 class HomeViewModel extends BaseViewModel
     implements HomeViewModelInputs, HomeViewModelOutputs {
-  final HomeUseCase _useCase;
-  HomeViewModel(this._useCase);
+  final HomeUseCase _homeUseCase;
+  HomeViewModel(this._homeUseCase);
 
   //* stream controllers
   final StreamController _servicesStreamController =
@@ -20,6 +22,12 @@ class HomeViewModel extends BaseViewModel
       BehaviorSubject<List<Store>>();
 
   @override
+  void start() {
+    _getHome();
+    super.start();
+  }
+
+  @override
   void dispose() {
     _servicesStreamController.close();
     _bannersStreamController.close();
@@ -28,11 +36,6 @@ class HomeViewModel extends BaseViewModel
   }
 
   // ! Inputs
-  @override
-  getHome() {
-    // TODO: implement getHome
-    throw UnimplementedError();
-  }
 
   @override
   Sink get inputBanners => _bannersStreamController.sink;
@@ -55,11 +58,24 @@ class HomeViewModel extends BaseViewModel
   @override
   Stream<List<Store>> get outputStores =>
       _storesStreamController.stream.map((stores) => stores);
+
+// ! Private methods
+  _getHome() async {
+    inputState.add(LoadingState(
+        stateRendererType: StateRendererType.fullScreenLoadingState));
+    (await _homeUseCase()).fold((failure) {
+      inputState.add(
+          ErrorState(StateRendererType.fullScreenErrorState, failure.message));
+    }, (homeObject) {
+      inputState.add(ContentState());
+      inputBanners.add(homeObject.data.banners);
+      inputServices.add(homeObject.data.services);
+      inputStores.add(homeObject.data.stores);
+    });
+  }
 }
 
 abstract class HomeViewModelInputs {
-  getHome();
-
   Sink get inputServices;
   Sink get inputBanners;
   Sink get inputStores;
