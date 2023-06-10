@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/data/data.dart';
 
 import '../responses/home_data_response.dart';
+import '../responses/store_detail_response.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   RemoteDataSourceImpl(this._client);
@@ -36,5 +37,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<HomeResponse> getHome() async {
     return await _client.home();
+  }
+
+  @override
+  Future<StoreDetailResponse> getStoreDetails() async {
+    return await _client.getStoreDetails();
   }
 }
