@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/app/app_prefs.dart';
 import 'package:ecommerce_app/data/data.dart';
+import 'package:ecommerce_app/data/data_source/local_data_source.dart';
+import 'package:ecommerce_app/data/data_source/local_data_source_impl.dart';
 import 'package:ecommerce_app/domain/repositories/respositories.dart';
 import 'package:ecommerce_app/domain/usecases/forgot_password_usecase.dart';
 import 'package:ecommerce_app/domain/usecases/register_usecase.dart';
@@ -37,14 +39,19 @@ Future<void> setup() async {
   // remote data soruce
   getIt.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImpl(getIt()));
+  // local data soruce
+  getIt.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
   // auth repo
   getIt.registerLazySingleton<AuthRepository>(() =>
       AuthRepositoryImpl(networkInfo: getIt(), remoteDataSource: getIt()));
   getIt.registerLazySingleton<ForgotPasswordRepository>(() =>
       ForgotPasswordRepositoryImpl(
           networkInfo: getIt(), remoteDataSource: getIt()));
-  getIt.registerLazySingleton<HomeRepository>(() =>
-      HomeRepositoryImpl(networkInfo: getIt(), remoteDataSource: getIt()));
+  getIt.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl(
+        networkInfo: getIt(),
+        remoteDataSource: getIt(),
+        localDataSource: getIt(),
+      ));
 }
 
 void initLogin() {

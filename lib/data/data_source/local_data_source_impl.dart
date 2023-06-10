@@ -7,7 +7,7 @@ const cacheHomeInterval = 60 * 1000; // 1 minute
 
 class LocalDataSourceImpl extends LocalDataSource {
   // run time cache
-  Map<String, CacheItem> cacheMap = Map();
+  Map<String, CacheItem> cacheMap = {};
 
   @override
   Future<HomeResponse> getHome() {
