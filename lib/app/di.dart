@@ -11,6 +11,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/network/network_info_implementer.dart';
+import '../data/repository_impl/home_repository_impl.dart';
+import '../domain/repositories/home_repository.dart';
 import '../domain/usecases/home_usecase.dart';
 import '../domain/usecases/login_usecase.dart';
 import '../presentation/login/login_viewmodel.dart';
@@ -41,6 +43,8 @@ Future<void> setup() async {
   getIt.registerLazySingleton<ForgotPasswordRepository>(() =>
       ForgotPasswordRepositoryImpl(
           networkInfo: getIt(), remoteDataSource: getIt()));
+  getIt.registerLazySingleton<HomeRepository>(() =>
+      HomeRepositoryImpl(networkInfo: getIt(), remoteDataSource: getIt()));
 }
 
 void initLogin() {
