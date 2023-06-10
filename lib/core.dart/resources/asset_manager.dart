@@ -16,6 +16,12 @@ class SvgAssets {
   static const String solidCircle = '$svgPath/solid_circle_ic.svg';
   static const String hollowCircle = '$svgPath/hollow_circle_ic.svg';
   static const String camera = '$svgPath/photo_camera_ic.svg';
+  static const String changeLanguage = '$svgPath/change_lang_ic.svg';
+  static const String contactUs = '$svgPath/contact_us_ic.svg';
+  static const String inviteFriends = '$svgPath/invite_friends_ic.svg';
+  static const String logout = '$svgPath/logout_ic.svg';
+  static const String settingRightArrow =
+      '$svgPath/settings_right_arrow_ic.svg';
 }
 
 class JsonAssets {
