@@ -34,6 +34,6 @@ abstract class AppServiceClient {
     @Field('profile_picture') required String profilePicture,
   });
 
-  @POST('/home')
+  @GET('/home')
   Future<HomeResponse> home();
 }
