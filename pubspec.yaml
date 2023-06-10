@@ -57,6 +57,7 @@ flutter:
     - assets/images/splash_logo.png
     - assets/svgs/
     - assets/json/
+    - assets/translations/
     
 
   fonts:

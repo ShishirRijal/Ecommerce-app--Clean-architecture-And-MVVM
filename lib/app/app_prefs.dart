@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core.dart/resources/lanaguage_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const prefsLanguageKey = "APP_LANGUAGE_KEY";
@@ -12,6 +13,26 @@ class AppPreferences {
   Future<String> getAppLanaguage() async {
     String? result = _sharedPrefs.getString(prefsLanguageKey);
     return result ?? Language.english.languageCode;
+  }
+
+  Future<void> setAppLanaguage() async {
+    final currentLanguage = await getAppLanaguage();
+    if (currentLanguage == Language.english.languageCode) {
+      // set to nepali
+      _sharedPrefs.setString(prefsLanguageKey, Language.nepali.languageCode);
+    } else {
+      // set to english
+      _sharedPrefs.setString(prefsLanguageKey, Language.english.languageCode);
+    }
+  }
+
+  Future<Locale> getLocal() async {
+    final currentLanguage = await getAppLanaguage();
+    if (currentLanguage == Language.english.languageCode) {
+      return englishLocal;
+    } else {
+      return nepaliLocal;
+    }
   }
 
   Future<void> setOnboardingScreenViewed() async {
