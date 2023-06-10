@@ -99,6 +99,8 @@ ThemeData getApplicationTheme() {
           getRegularTextStyle(color: ColorManager.primary), // subtitle 2
       labelSmall: getRegularTextStyle(color: ColorManager.grey1), // caption
       bodyLarge: getRegularTextStyle(), // body text 1
+      bodyMedium:
+          getMediumTextStyle(color: ColorManager.lightGrey), // body text 2
     ),
   );
 }

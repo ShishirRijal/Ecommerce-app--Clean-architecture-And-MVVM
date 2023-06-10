@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                 return InkWell(
                   onTap: () {
                     // navigate to store details screen
-                    // Navigator.of(context).pushNamed(Routes.storeDetailsRoute);
+                    Navigator.of(context).pushNamed(Routes.storeDetailRoute);
                   },
                   child: Card(
                     elevation: AppSize.s4,

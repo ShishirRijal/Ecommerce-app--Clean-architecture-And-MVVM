@@ -8,13 +8,13 @@ import '../../domain/usecases/store_detail_usecase.dart';
 import '../common/state_renderer/state_render_implementer.dart';
 import '../common/state_renderer/state_renderer.dart';
 
-class StoreDetailsViewModel extends BaseViewModel
-    with StoreDetailsViewModelInput, StoreDetailsViewModelOutput {
+class StoreDetailViewModel extends BaseViewModel
+    with StoreDetailViewModelInput, StoreDetailViewModelOutput {
   final _storeDetailsStreamController = BehaviorSubject<StoreDetail>();
 
   final StoreDetailUseCase storeDetailUseCase;
 
-  StoreDetailsViewModel(this.storeDetailUseCase);
+  StoreDetailViewModel(this.storeDetailUseCase);
 
   @override
   start() async {
@@ -50,10 +50,10 @@ class StoreDetailsViewModel extends BaseViewModel
       _storeDetailsStreamController.stream.map((stores) => stores);
 }
 
-abstract class StoreDetailsViewModelInput {
+abstract class StoreDetailViewModelInput {
   Sink get inputStoreDetails;
 }
 
-abstract class StoreDetailsViewModelOutput {
+abstract class StoreDetailViewModelOutput {
   Stream<StoreDetail> get outputStoreDetails;
 }
