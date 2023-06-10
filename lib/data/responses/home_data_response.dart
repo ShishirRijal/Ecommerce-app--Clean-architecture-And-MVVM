@@ -23,6 +23,7 @@ class ServiceResponse extends BaseResponse {
       _$ServiceResponseFromJson(json);
 
   // from json
+  @override
   Map<String, dynamic> toJson() => _$ServiceResponseToJson(this);
 }
 
@@ -46,6 +47,7 @@ class StoreResponse extends BaseResponse {
       _$StoreResponseFromJson(json);
 
   // from json
+  @override
   Map<String, dynamic> toJson() => _$StoreResponseToJson(this);
 }
 
@@ -71,6 +73,7 @@ class BannerResponse extends BaseResponse {
       _$BannerResponseFromJson(json);
 
   // from json
+  @override
   Map<String, dynamic> toJson() => _$BannerResponseToJson(this);
 }
 
@@ -94,6 +97,7 @@ class HomeDataResponse extends BaseResponse {
       _$HomeDataResponseFromJson(json);
 
   // from json
+  @override
   Map<String, dynamic> toJson() => _$HomeDataResponseToJson(this);
 }
 
@@ -111,5 +115,6 @@ class HomeResponse extends BaseResponse {
       _$HomeResponseFromJson(json);
 
   // from json
+  @override
   Map<String, dynamic> toJson() => _$HomeResponseToJson(this);
 }
