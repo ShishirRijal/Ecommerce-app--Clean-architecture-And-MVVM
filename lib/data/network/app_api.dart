@@ -4,6 +4,7 @@ import 'package:ecommerce_app/data/data.dart';
 import 'package:retrofit/http.dart';
 
 import '../responses/home_data_response.dart';
+import '../responses/store_detail_response.dart';
 
 part 'app_api.g.dart';
 
@@ -36,4 +37,7 @@ abstract class AppServiceClient {
 
   @GET('/home')
   Future<HomeResponse> home();
+
+  @GET("/store-detail/1")
+  Future<StoreDetailResponse> getStoreDetails();
 }
